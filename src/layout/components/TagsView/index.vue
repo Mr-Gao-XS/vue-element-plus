@@ -18,7 +18,7 @@
 <script>
 import ScrollPane from './ScrollPane'
 import path from 'path'
-
+import { asyncRoutes } from '@/router/index'
 export default {
   components: { ScrollPane },
   data() {
@@ -35,7 +35,7 @@ export default {
       return this.$store.state.tagsView.visitedViews
     },
     routes() {
-      return this.$store.state.permission.routes
+      return asyncRoutes
     },
   },
   watch: {

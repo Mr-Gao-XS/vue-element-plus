@@ -6,29 +6,20 @@
 
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
-        <search id="header-search" class="right-menu-item" />
-
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
+        <screenfull title="全屏" id="screenfull" class="right-menu-item hover-effect" />
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
+          <el-avatar class="user-avatar" size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
           <i class="el-icon-caret-bottom" />
         </div>
+
         <el-dropdown-menu slot="dropdown">
           <router-link to="/profile/index">
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item>修改密码</el-dropdown-item>
           </router-link>
-          <router-link to="/">
-            <el-dropdown-item>首页</el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
-            <el-dropdown-item>github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>文档</el-dropdown-item>
-          </a>
+
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出</span>
           </el-dropdown-item>
@@ -45,14 +36,11 @@ import Hamburger from '@/components/Hamburger'
 
 import Screenfull from '@/components/Screenfull'
 
-import Search from '@/components/HeaderSearch'
-
 export default {
   components: {
     Breadcrumb,
     Hamburger,
     Screenfull,
-    Search,
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'device']),
@@ -70,6 +58,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#screenfull {
+  opacity: 0.7;
+}
 .navbar {
   height: 50px;
   overflow: hidden;
@@ -102,8 +93,9 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 50px;
 
+    display: flex;
+    align-items: center;
     &:focus {
       outline: none;
     }
@@ -111,7 +103,7 @@ export default {
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
-      height: 100%;
+
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
@@ -127,25 +119,15 @@ export default {
     }
 
     .avatar-container {
-      margin-right: 30px;
-
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
-
+        display: flex;
+        align-items: center;
         .user-avatar {
           cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
+          width: 30px;
+          height: 30px;
+          margin-right: 5px;
         }
       }
     }
